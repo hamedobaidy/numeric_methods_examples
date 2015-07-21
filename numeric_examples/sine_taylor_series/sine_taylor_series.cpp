@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int factorial(int);
+unsigned long long factorial(unsigned long long);
 
 int main(int argc, char **argv) {
 	double eps = 0.000001;
@@ -33,8 +33,9 @@ int main(int argc, char **argv) {
 			a_n = x;
 			s_n += a_n;
 		} else {
-			a_n = (pow(-1, n) * (pow(x, 2 * n + 1) / factorial(2 * n + 1)));
-			cout << "a_n = " << a_n << endl;
+			double fact = factorial(2 * n + 1);
+			a_n = pow(-1, n) * ((pow(x, 2 * n + 1) / fact));
+//			cout << "a_n = " << a_n << ", fact = " << fact << endl;
 			s = s_n;
 			s_n += a_n;
 		}
@@ -44,19 +45,19 @@ int main(int argc, char **argv) {
 		if (e < eps || n > 20)
 			stop = false;
 
-//		cout << "s_" << n << " = " << s_n << endl;
+		cout << "s_" << n << " = " << s_n << endl;
 
 		n++;
 	} while (stop);
 
-	cout << "Converged at n = " << n << endl;
+	cout << "Converged at n = " << n - 1 << endl;
 	cout << "s_n = sin(x) = " << s_n << endl;
 	cout << "cmath, sin(x) = " << sin(x) << endl;
 
 	return 0;
 }
 
-int factorial(int n) {
+unsigned long long factorial(unsigned long long n) {
 	if (n == 0)
 		return 1;
 	return n * factorial(n - 1);
