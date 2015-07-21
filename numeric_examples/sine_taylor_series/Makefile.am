@@ -1,0 +1,3 @@
+bin_PROGRAMS=sine_taylor_series
+sine_taylor_series_SOURCES=sine_taylor_series.cpp
+

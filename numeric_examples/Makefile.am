@@ -1,0 +1,1 @@
+SUBDIRS=src sine_taylor_series factorial
