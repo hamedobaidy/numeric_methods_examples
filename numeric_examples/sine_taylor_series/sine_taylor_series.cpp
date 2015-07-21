@@ -19,6 +19,10 @@ int main(int argc, char **argv) {
 	cout << "Enter x in degrees; ";
 	cin >> x;
 
+	if( x==0 || ((fmod(x, 90)==0))) {
+		cout << "Error x is 0 or multiple of pi\n";
+		return 90;
+	}
 	x = (fmod(x, 360) * M_PI) / 180;
 	cout << "x in radian = " << x << endl;
 
