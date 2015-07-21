@@ -33,18 +33,18 @@ int main(int argc, char **argv) {
 			a_n = x;
 			s_n += a_n;
 		} else {
-			a_n = (pow(-1, n) / (factorial(2 * n + 1))) * pow(x, 2 * n + 1);
-
+			a_n = (pow(-1, n) * (pow(x, 2 * n + 1) / factorial(2 * n + 1)));
+			cout << "a_n = " << a_n << endl;
 			s = s_n;
 			s_n += a_n;
 		}
 
 		double e = fabs((s_n - s) / s_n);
 
-		if (e < eps || n > 100)
+		if (e < eps || n > 20)
 			stop = false;
 
-		cout << "s_" << n << " = " << s_n << endl;
+//		cout << "s_" << n << " = " << s_n << endl;
 
 		n++;
 	} while (stop);
