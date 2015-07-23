@@ -8,14 +8,17 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <limits>
 
 using namespace std;
 
-unsigned long long factorial(unsigned long long);
+double factorial(int);
 
 int main(int argc, char **argv) {
 	double eps = 0.000001;
 	double x = 0;
+
+	long long int MAX = numeric_limits<long long int>::max();
 
 	bool another = true;
 	char q = 'y';
@@ -24,8 +27,9 @@ int main(int argc, char **argv) {
 		cout << "Enter x in degrees; ";
 		cin >> x;
 
+		cout << "x in degrees = " << x << endl;
 		x = (fmod(x, 360) * M_PI) / 180;
-		cout << "x in radian = " << x << endl;
+		cout << "x in radians = " << x << endl;
 
 		bool stop = true;
 		double s_n = 0.0;
@@ -35,31 +39,29 @@ int main(int argc, char **argv) {
 		do {
 			if (x == 0) {
 				n++;
+				cout << "x == 0\n";
 				break;
 			}
 
 			if (fmod(x, 2 * M_PI) <= eps || (2 * M_PI - x) <= eps) {
 				n++;
+				cout << "x = 2 * n * pi\n";
 				break;
 			}
 
-			if (fmod(x, M_PI) <= eps || (M_PI - x) <= eps) {
+			if (fmod(x, M_PI) <= eps || fabs(M_PI - x) <= eps) {
 				n++;
+				cout << "x = n * pi\n";
+				cout << fmod(x, M_PI) << endl;
 				break;
 			}
 
-//			if (fmod(x, 3 * M_PI / 2) <= eps || (3 * M_PI / 2 - x) <= eps) {
-//				n++;
-//				s_n = -1;
-//				break;
-//			}
-//
-//			if (fmod(x, M_PI / 2) <= eps || (M_PI / 2 - x) <= eps) {
-//				n++;
-//				s_n = 1;
-//				break;
-//			}
-
+			if (fmod(x, 3* M_PI / 2) <= eps || fabs(3 * M_PI / 2 - x) <= eps) {
+				n++;
+				s_n = -1;
+				cout << "x = 3 * n * pi / 2\n";
+				break;
+			}
 
 			double s = 0.0;
 			if (n == 0) {
@@ -70,11 +72,14 @@ int main(int argc, char **argv) {
 				a_n = pow(-1, n) * ((pow(x, 2 * n + 1) / fact));
 				s = s_n;
 				s_n += a_n;
+
+//				if (fact > MAX)
+//					break;
 			}
 
 			double e = fabs((s_n - s) / s_n);
 
-			if (e < eps || n > 20)
+			if (e < eps || n > 50)
 				stop = false;
 
 			cout << "s_" << n << " = " << s_n << endl;
@@ -97,7 +102,7 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-unsigned long long factorial(unsigned long long n) {
+double factorial(int n) {
 	if (n == 0)
 		return 1;
 	return n * factorial(n - 1);
