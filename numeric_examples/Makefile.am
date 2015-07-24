@@ -1,1 +1,1 @@
-SUBDIRS=src sine_taylor_series factorial
+SUBDIRS=src sine_taylor_series factorial calculate_pi

@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile src/Makefile sine_taylor_series/Makefile factorial/Makefile"
+config_files=" Makefile src/Makefile sine_taylor_series/Makefile factorial/Makefile calculate_pi/Makefile"
 config_commands=" depfiles"
 
 ac_cs_usage="\
@@ -431,7 +431,7 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/hamed/Documents/Mars/C++/workspace/numeric_examples'
+ac_pwd='/home/hamed/git/numeric_methods_examples/numeric_examples'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
@@ -534,6 +534,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "sine_taylor_series/Makefile") CONFIG_FILES="$CONFIG_FILES sine_taylor_series/Makefile" ;;
     "factorial/Makefile") CONFIG_FILES="$CONFIG_FILES factorial/Makefile" ;;
+    "calculate_pi/Makefile") CONFIG_FILES="$CONFIG_FILES calculate_pi/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -633,12 +634,12 @@ S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/install-sh"
-S["MAKEINFO"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/missing makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/missing autoheader"
-S["AUTOMAKE"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/missing automake-1.14"
-S["AUTOCONF"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/missing autoconf"
-S["ACLOCAL"]="${SHELL} /home/hamed/Documents/Mars/C++/workspace/numeric_examples/missing aclocal-1.14"
+S["install_sh"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/install-sh"
+S["MAKEINFO"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/missing makeinfo"
+S["AUTOHEADER"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/missing autoheader"
+S["AUTOMAKE"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/missing automake-1.14"
+S["AUTOCONF"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/missing autoconf"
+S["ACLOCAL"]="${SHELL} /home/hamed/git/numeric_methods_examples/numeric_examples/missing aclocal-1.14"
 S["VERSION"]="1.0"
 S["PACKAGE"]="numeric_examples"
 S["CYGPATH_W"]="echo"

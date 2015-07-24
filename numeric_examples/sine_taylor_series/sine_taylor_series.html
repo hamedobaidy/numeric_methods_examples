@@ -1,0 +1,121 @@
+<html>
+<head>
+  <title>sine_taylor_series.cpp</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<pre>
+<font color="#444444">/*
+ * sine_taylor_series.cpp
+ *
+ *  Created on: Jul 21, 2015
+ *      Author: hamed
+ */</font>
+
+<font color="0000ff"><strong>#include <font color="#008000">&lt;iostream&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;cmath&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;iomanip&gt;</font></strong></font>
+<font color="0000ff"><strong>#include <font color="#008000">&lt;limits&gt;</font></strong></font>
+
+<strong>using</strong> <strong>namespace</strong> <font color="#2040a0">std</font><font color="4444FF">;</font>
+
+<strong>double</strong> <font color="#2040a0">factorial</font><font color="4444FF">(</font><strong>int</strong><font color="4444FF">)</font><font color="4444FF">;</font>
+
+<strong>int</strong> <font color="#2040a0">main</font><font color="4444FF">(</font><strong>int</strong> <font color="#2040a0">argc</font>, <strong>char</strong> <font color="4444FF">*</font><font color="4444FF">*</font><font color="#2040a0">argv</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+	<strong>double</strong> <font color="#2040a0">eps</font> <font color="4444FF">=</font> <font color="#FF0000">0.000001</font><font color="4444FF">;</font>
+	<strong>double</strong> <font color="#2040a0">x</font> <font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">;</font>
+
+	<strong>long</strong> <strong>long</strong> <strong>int</strong> <font color="#2040a0">MAX</font> <font color="4444FF">=</font> <font color="#2040a0">numeric_limits</font><font color="4444FF">&lt;</font><strong>long</strong> <strong>long</strong> <strong>int</strong><font color="4444FF">&gt;</font><font color="4444FF">:</font><font color="4444FF">:</font><font color="#2040a0">max</font><font color="4444FF">(</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+	<strong>bool</strong> <font color="#2040a0">another</font> <font color="4444FF">=</font> <strong>true</strong><font color="4444FF">;</font>
+	<strong>char</strong> <font color="#2040a0">q</font> <font color="4444FF">=</font> <font color="#008000">'y'</font><font color="4444FF">;</font>
+
+	<strong>do</strong> <font color="4444FF"><strong>{</strong></font>
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;Enter x in degrees; &quot;</font><font color="4444FF">;</font>
+		<font color="#2040a0">cin</font> <font color="4444FF">&gt;</font><font color="4444FF">&gt;</font> <font color="#2040a0">x</font><font color="4444FF">;</font>
+
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x in degrees = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">x</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+		<font color="#2040a0">x</font> <font color="4444FF">=</font> <font color="4444FF">(</font><font color="#2040a0">fmod</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#FF0000">360</font><font color="4444FF">)</font> <font color="4444FF">*</font> <font color="#2040a0">M_PI</font><font color="4444FF">)</font> / <font color="#FF0000">180</font><font color="4444FF">;</font>
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x in radians = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">x</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+
+		<strong>bool</strong> <font color="#2040a0">stop</font> <font color="4444FF">=</font> <strong>true</strong><font color="4444FF">;</font>
+		<strong>double</strong> <font color="#2040a0">s_n</font> <font color="4444FF">=</font> <font color="#FF0000">0.0</font><font color="4444FF">;</font>
+		<strong>int</strong> <font color="#2040a0">n</font> <font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">;</font>
+		<strong>double</strong> <font color="#2040a0">a_n</font> <font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">;</font>
+
+		<strong>do</strong> <font color="4444FF"><strong>{</strong></font>
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">x</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+				<font color="#2040a0">n</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+				<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x == 0<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">;</font>
+				<strong>break</strong><font color="4444FF">;</font>
+			<font color="4444FF"><strong>}</strong></font>
+
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">fmod</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#FF0000">2</font> <font color="4444FF">*</font> <font color="#2040a0">M_PI</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font> <font color="4444FF">|</font><font color="4444FF">|</font> <font color="4444FF">(</font><font color="#FF0000">2</font> <font color="4444FF">*</font> <font color="#2040a0">M_PI</font> <font color="4444FF">-</font> <font color="#2040a0">x</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+				<font color="#2040a0">n</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+				<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x = 2 * n * pi<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">;</font>
+				<strong>break</strong><font color="4444FF">;</font>
+			<font color="4444FF"><strong>}</strong></font>
+
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">fmod</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#2040a0">M_PI</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font> <font color="4444FF">|</font><font color="4444FF">|</font> <font color="#2040a0">fabs</font><font color="4444FF">(</font><font color="#2040a0">M_PI</font> <font color="4444FF">-</font> <font color="#2040a0">x</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+				<font color="#2040a0">n</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+				<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x = n * pi<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">;</font>
+				<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">fmod</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#2040a0">M_PI</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+				<strong>break</strong><font color="4444FF">;</font>
+			<font color="4444FF"><strong>}</strong></font>
+
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">fmod</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#FF0000">3</font><font color="4444FF">*</font> <font color="#2040a0">M_PI</font> / <font color="#FF0000">2</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font> <font color="4444FF">|</font><font color="4444FF">|</font> <font color="#2040a0">fabs</font><font color="4444FF">(</font><font color="#FF0000">3</font> <font color="4444FF">*</font> <font color="#2040a0">M_PI</font> / <font color="#FF0000">2</font> <font color="4444FF">-</font> <font color="#2040a0">x</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">=</font> <font color="#2040a0">eps</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+				<font color="#2040a0">n</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+				<font color="#2040a0">s_n</font> <font color="4444FF">=</font> <font color="4444FF">-</font><font color="#FF0000">1</font><font color="4444FF">;</font>
+				<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;x = 3 * n * pi / 2<font color="#77dd77">\n</font>&quot;</font><font color="4444FF">;</font>
+				<strong>break</strong><font color="4444FF">;</font>
+			<font color="4444FF"><strong>}</strong></font>
+
+			<strong>double</strong> <font color="#2040a0">s</font> <font color="4444FF">=</font> <font color="#FF0000">0.0</font><font color="4444FF">;</font>
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">n</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+				<font color="#2040a0">a_n</font> <font color="4444FF">=</font> <font color="#2040a0">x</font><font color="4444FF">;</font>
+				<font color="#2040a0">s_n</font> <font color="4444FF">+</font><font color="4444FF">=</font> <font color="#2040a0">a_n</font><font color="4444FF">;</font>
+			<font color="4444FF"><strong>}</strong></font> <strong>else</strong> <font color="4444FF"><strong>{</strong></font>
+				<strong>double</strong> <font color="#2040a0">fact</font> <font color="4444FF">=</font> <font color="#2040a0">factorial</font><font color="4444FF">(</font><font color="#FF0000">2</font> <font color="4444FF">*</font> <font color="#2040a0">n</font> <font color="4444FF">+</font> <font color="#FF0000">1</font><font color="4444FF">)</font><font color="4444FF">;</font>
+				<font color="#2040a0">a_n</font> <font color="4444FF">=</font> <font color="#2040a0">pow</font><font color="4444FF">(</font><font color="4444FF">-</font><font color="#FF0000">1</font>, <font color="#2040a0">n</font><font color="4444FF">)</font> <font color="4444FF">*</font> <font color="4444FF">(</font><font color="4444FF">(</font><font color="#2040a0">pow</font><font color="4444FF">(</font><font color="#2040a0">x</font>, <font color="#FF0000">2</font> <font color="4444FF">*</font> <font color="#2040a0">n</font> <font color="4444FF">+</font> <font color="#FF0000">1</font><font color="4444FF">)</font> / <font color="#2040a0">fact</font><font color="4444FF">)</font><font color="4444FF">)</font><font color="4444FF">;</font>
+				<font color="#2040a0">s</font> <font color="4444FF">=</font> <font color="#2040a0">s_n</font><font color="4444FF">;</font>
+				<font color="#2040a0">s_n</font> <font color="4444FF">+</font><font color="4444FF">=</font> <font color="#2040a0">a_n</font><font color="4444FF">;</font>
+
+<font color="#444444">//				if (fact &gt; MAX)</font>
+<font color="#444444">//					break;</font>
+			<font color="4444FF"><strong>}</strong></font>
+
+			<strong>double</strong> <font color="#2040a0">e</font> <font color="4444FF">=</font> <font color="#2040a0">fabs</font><font color="4444FF">(</font><font color="4444FF">(</font><font color="#2040a0">s_n</font> <font color="4444FF">-</font> <font color="#2040a0">s</font><font color="4444FF">)</font> / <font color="#2040a0">s_n</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+			<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">e</font> <font color="4444FF">&lt;</font> <font color="#2040a0">eps</font> <font color="4444FF">|</font><font color="4444FF">|</font> <font color="#2040a0">n</font> <font color="4444FF">&gt;</font> <font color="#FF0000">50</font><font color="4444FF">)</font>
+				<font color="#2040a0">stop</font> <font color="4444FF">=</font> <strong>false</strong><font color="4444FF">;</font>
+
+			<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;s_&quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">n</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot; = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">s_n</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+
+			<font color="#2040a0">n</font><font color="4444FF">+</font><font color="4444FF">+</font><font color="4444FF">;</font>
+		<font color="4444FF"><strong>}</strong></font> <strong>while</strong> <font color="4444FF">(</font><font color="#2040a0">stop</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;Converged at n = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">n</font> <font color="4444FF">-</font> <font color="#FF0000">1</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;s_n = sin(x) = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">s_n</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;cmath, sin(x) = &quot;</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">sin</font><font color="4444FF">(</font><font color="#2040a0">x</font><font color="4444FF">)</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#2040a0">endl</font><font color="4444FF">;</font>
+
+		<font color="#2040a0">cout</font> <font color="4444FF">&lt;</font><font color="4444FF">&lt;</font> <font color="#008000">&quot;Another number? &quot;</font><font color="4444FF">;</font>
+		<font color="#2040a0">cin</font> <font color="4444FF">&gt;</font><font color="4444FF">&gt;</font> <font color="#2040a0">q</font><font color="4444FF">;</font>
+
+		<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">q</font> <font color="4444FF">!</font><font color="4444FF">=</font> <font color="#008000">'y'</font><font color="4444FF">)</font>
+			<font color="#2040a0">another</font> <font color="4444FF">=</font> <strong>false</strong><font color="4444FF">;</font>
+
+	<font color="4444FF"><strong>}</strong></font> <strong>while</strong> <font color="4444FF">(</font><font color="#2040a0">another</font><font color="4444FF">)</font><font color="4444FF">;</font>
+
+	<strong>return</strong> <font color="#FF0000">0</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+<strong>double</strong> <font color="#2040a0">factorial</font><font color="4444FF">(</font><strong>int</strong> <font color="#2040a0">n</font><font color="4444FF">)</font> <font color="4444FF"><strong>{</strong></font>
+	<strong>if</strong> <font color="4444FF">(</font><font color="#2040a0">n</font> <font color="4444FF">=</font><font color="4444FF">=</font> <font color="#FF0000">0</font><font color="4444FF">)</font>
+		<strong>return</strong> <font color="#FF0000">1</font><font color="4444FF">;</font>
+	<strong>return</strong> <font color="#2040a0">n</font> <font color="4444FF">*</font> <font color="#2040a0">factorial</font><font color="4444FF">(</font><font color="#2040a0">n</font> <font color="4444FF">-</font> <font color="#FF0000">1</font><font color="4444FF">)</font><font color="4444FF">;</font>
+<font color="4444FF"><strong>}</strong></font>
+
+</pre>
+<hr>
+syntax highlighted by <a href="http://www.palfrader.org/code2html">Code2HTML</a>, v. 0.9.1
+</body>
+</html>
