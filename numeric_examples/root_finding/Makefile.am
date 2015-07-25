@@ -1,0 +1,4 @@
+bin_PROGRAMS=bisection_test
+
+bisection_test_SOURCES=bisection_test.cpp root_finding.cpp
+

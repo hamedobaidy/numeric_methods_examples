@@ -1,1 +1,1 @@
-SUBDIRS=src sine_taylor_series factorial calculate_pi
+SUBDIRS=src sine_taylor_series factorial calculate_pi root_finding

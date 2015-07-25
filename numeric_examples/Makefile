@@ -286,7 +286,7 @@ target_vendor = unknown
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-SUBDIRS = src sine_taylor_series factorial calculate_pi
+SUBDIRS = src sine_taylor_series factorial calculate_pi root_finding
 all: all-recursive
 
 .SUFFIXES:

@@ -9,6 +9,6 @@ AM_INIT_AUTOMAKE()
 
 AC_PROG_CXX
 
-AC_CONFIG_FILES(Makefile src/Makefile sine_taylor_series/Makefile factorial/Makefile calculate_pi/Makefile)
+AC_CONFIG_FILES(Makefile src/Makefile sine_taylor_series/Makefile factorial/Makefile calculate_pi/Makefile root_finding/Makefile)
 AC_OUTPUT
 
