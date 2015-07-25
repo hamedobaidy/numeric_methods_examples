@@ -8,7 +8,7 @@
 #ifndef ROOT_FINDING_H_
 #define ROOT_FINDING_H_
 
-int bisection_root(double (*f)(double), double, double, double, double &);
+int bisection_root(double (*f)(double), double, double, double, int, double &);
 
 double regula_falsi_root(double (*f)(double), double, double);
 

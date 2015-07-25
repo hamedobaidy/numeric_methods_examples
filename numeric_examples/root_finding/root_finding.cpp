@@ -11,7 +11,17 @@ using namespace std;
 
 #include "root_finding.h"
 
-int bisection_root(double (*f)(double), double a, double b, double tolerence, double &root)
+/**
+ *
+ * @param f function to be used for finding the root
+ * @param a
+ * @param b
+ * @param tolerance
+ * @param max_iter maximum iteration
+ * @param root root to be find
+ * @return status
+ */
+int bisection_root(double (*f)(double), double a, double b, double tolerence, int max_iter, double &root)
 {
 	double f_a = f(a);
 	double f_b = f(b);
@@ -20,6 +30,8 @@ int bisection_root(double (*f)(double), double a, double b, double tolerence, do
 		return -1;
 
 	bool more_iteration = true;
+
+	int i = 0;
 
 	double x_ns = 0.0;
 
@@ -32,12 +44,13 @@ int bisection_root(double (*f)(double), double a, double b, double tolerence, do
 			a = x_nsi;
 		}
 
-		if (fabs((x_nsi-x_ns)/x_ns) < tolerence) {
+		if (fabs((x_nsi-x_ns)/x_ns) < tolerence || i >= max_iter) {
 			more_iteration = false;
 		}
 
 		x_ns = x_nsi;
 
+		i++;
 	} while(more_iteration);
 
 	root = x_ns;
