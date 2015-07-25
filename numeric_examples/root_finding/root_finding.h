@@ -10,12 +10,12 @@
 
 int bisection_root(double (*f)(double), double, double, double, int, double &);
 
-double regula_falsi_root(double (*f)(double), double, double);
+int regula_falsi_root(double (*f)(double), double, double, double, int, double &);
 
-double newton_root(double (*f)(double), double);
+int newton_root(double (*f)(double), double, double, int, double &);
 
-double secant_root(double (*f)(double), double);
+int secant_root(double (*f)(double), double, double, int, double&);
 
-double fixed_point_iteration_root(double (*f)(double), double);
+int fixed_point_iteration_root(double (*f)(double), double, double, int, double &);
 
 #endif /* ROOT_FINDING_H_ */

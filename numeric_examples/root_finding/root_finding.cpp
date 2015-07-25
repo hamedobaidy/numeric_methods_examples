@@ -21,7 +21,7 @@ using namespace std;
  * @param root root to be find
  * @return status
  */
-int bisection_root(double (*f)(double), double a, double b, double tolerence, int max_iter, double &root)
+int bisection_root(double (*f)(double), double a, double b, double tolerance, int max_iter, double &root)
 {
 	double f_a = f(a);
 	double f_b = f(b);
@@ -44,7 +44,7 @@ int bisection_root(double (*f)(double), double a, double b, double tolerence, in
 			a = x_nsi;
 		}
 
-		if (fabs((x_nsi-x_ns)/x_ns) < tolerence || i >= max_iter) {
+		if (fabs((x_nsi-x_ns)/x_ns) < tolerance || i >= max_iter) {
 			more_iteration = false;
 		}
 
@@ -58,23 +58,60 @@ int bisection_root(double (*f)(double), double a, double b, double tolerence, in
 	return 0;
 }
 
-double regula_falsi_root(double (*f)(double), double a, double b)
+/**
+ *
+ * @param f
+ * @param a
+ * @param b
+ * @param tolerance
+ * @param max_iter
+ * @param root
+ * @return status
+ */
+int regula_falsi_root(double (*f)(double), double a, double b, double tolerance, int max_iter, double & root)
 {
 
 	return 0;
 }
 
-double newton_root(double (*f)(double), double x0)
+/**
+ *
+ * @param f
+ * @param x0
+ * @param tolerance
+ * @param max_iter
+ * @param root
+ * @return
+ */
+int newton_root(double (*f)(double), double x0, double tolerance, int max_iter, double &root)
 {
 	return 0;
 }
 
-double secant_root(double (*f)(double), double x0)
+/**
+ *
+ * @param f
+ * @param x0
+ * @param tolerance
+ * @param max_iter
+ * @param root
+ * @return
+ */
+int secant_root(double (*f)(double), double x0, double tolerance, int max_iter, double& root)
 {
 	return 0;
 }
 
-double fixed_point_iteration_root(double (*f)(double), double x0)
+/**
+ *
+ * @param f
+ * @param x0
+ * @param tolerance
+ * @param max_iter
+ * @param root
+ * @return
+ */
+int fixed_point_iteration_root(double (*f)(double), double x0, double tolerance, int max_iter, double & root)
 {
 	return 0;
 }
