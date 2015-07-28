@@ -9,6 +9,6 @@
 
 
 int main(int argc, char **argv) {
-
+	double root = 0;
 	return 0;
 }
