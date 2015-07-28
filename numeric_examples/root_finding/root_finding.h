@@ -14,7 +14,7 @@ int regula_falsi_root(double (*f)(double), double, double, double, int, double &
 
 int newton_root(double (*f)(double), double (*fp)(double), double, double, int, double &);
 
-int secant_root(double (*f)(double), double, double, int, double&);
+int secant_root(double (*f)(double), double, double, double, int, double&);
 
 int fixed_point_iteration_root(double (*f)(double), double, double, int, double &);
 

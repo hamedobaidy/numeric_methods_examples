@@ -80,7 +80,7 @@ build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
 bin_PROGRAMS = bisection_test$(EXEEXT) regula_falsi_test$(EXEEXT) \
-	newton_test$(EXEEXT)
+	newton_test$(EXEEXT) secant_test$(EXEEXT)
 subdir = root_finding
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -104,6 +104,9 @@ am_regula_falsi_test_OBJECTS = regula_falsi_test.$(OBJEXT) \
 	root_finding.$(OBJEXT)
 regula_falsi_test_OBJECTS = $(am_regula_falsi_test_OBJECTS)
 regula_falsi_test_LDADD = $(LDADD)
+am_secant_test_OBJECTS = secant_test.$(OBJEXT) root_finding.$(OBJEXT)
+secant_test_OBJECTS = $(am_secant_test_OBJECTS)
+secant_test_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -134,9 +137,9 @@ am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
 SOURCES = $(bisection_test_SOURCES) $(newton_test_SOURCES) \
-	$(regula_falsi_test_SOURCES)
+	$(regula_falsi_test_SOURCES) $(secant_test_SOURCES)
 DIST_SOURCES = $(bisection_test_SOURCES) $(newton_test_SOURCES) \
-	$(regula_falsi_test_SOURCES)
+	$(regula_falsi_test_SOURCES) $(secant_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -261,6 +264,7 @@ top_srcdir = @top_srcdir@
 bisection_test_SOURCES = bisection_test.cpp root_finding.cpp
 regula_falsi_test_SOURCES = regula_falsi_test.cpp root_finding.cpp
 newton_test_SOURCES = newton_test.cpp root_finding.cpp
+secant_test_SOURCES = secant_test.cpp root_finding.cpp
 all: all-am
 
 .SUFFIXES:
@@ -350,6 +354,10 @@ regula_falsi_test$(EXEEXT): $(regula_falsi_test_OBJECTS) $(regula_falsi_test_DEP
 	@rm -f regula_falsi_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(regula_falsi_test_OBJECTS) $(regula_falsi_test_LDADD) $(LIBS)
 
+secant_test$(EXEEXT): $(secant_test_OBJECTS) $(secant_test_DEPENDENCIES) $(EXTRA_secant_test_DEPENDENCIES) 
+	@rm -f secant_test$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(secant_test_OBJECTS) $(secant_test_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -360,6 +368,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/newton_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/regula_falsi_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/root_finding.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/secant_test.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
