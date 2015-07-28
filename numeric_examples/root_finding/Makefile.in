@@ -79,7 +79,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-bin_PROGRAMS = bisection_test$(EXEEXT) regula_falsi_test$(EXEEXT)
+bin_PROGRAMS = bisection_test$(EXEEXT) regula_falsi_test$(EXEEXT) \
+	newton_test$(EXEEXT)
 subdir = root_finding
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -96,6 +97,9 @@ am_bisection_test_OBJECTS = bisection_test.$(OBJEXT) \
 	root_finding.$(OBJEXT)
 bisection_test_OBJECTS = $(am_bisection_test_OBJECTS)
 bisection_test_LDADD = $(LDADD)
+am_newton_test_OBJECTS = newton_test.$(OBJEXT) root_finding.$(OBJEXT)
+newton_test_OBJECTS = $(am_newton_test_OBJECTS)
+newton_test_LDADD = $(LDADD)
 am_regula_falsi_test_OBJECTS = regula_falsi_test.$(OBJEXT) \
 	root_finding.$(OBJEXT)
 regula_falsi_test_OBJECTS = $(am_regula_falsi_test_OBJECTS)
@@ -129,8 +133,10 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(bisection_test_SOURCES) $(regula_falsi_test_SOURCES)
-DIST_SOURCES = $(bisection_test_SOURCES) $(regula_falsi_test_SOURCES)
+SOURCES = $(bisection_test_SOURCES) $(newton_test_SOURCES) \
+	$(regula_falsi_test_SOURCES)
+DIST_SOURCES = $(bisection_test_SOURCES) $(newton_test_SOURCES) \
+	$(regula_falsi_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -254,6 +260,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 bisection_test_SOURCES = bisection_test.cpp root_finding.cpp
 regula_falsi_test_SOURCES = regula_falsi_test.cpp root_finding.cpp
+newton_test_SOURCES = newton_test.cpp root_finding.cpp
 all: all-am
 
 .SUFFIXES:
@@ -335,6 +342,10 @@ bisection_test$(EXEEXT): $(bisection_test_OBJECTS) $(bisection_test_DEPENDENCIES
 	@rm -f bisection_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(bisection_test_OBJECTS) $(bisection_test_LDADD) $(LIBS)
 
+newton_test$(EXEEXT): $(newton_test_OBJECTS) $(newton_test_DEPENDENCIES) $(EXTRA_newton_test_DEPENDENCIES) 
+	@rm -f newton_test$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(newton_test_OBJECTS) $(newton_test_LDADD) $(LIBS)
+
 regula_falsi_test$(EXEEXT): $(regula_falsi_test_OBJECTS) $(regula_falsi_test_DEPENDENCIES) $(EXTRA_regula_falsi_test_DEPENDENCIES) 
 	@rm -f regula_falsi_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(regula_falsi_test_OBJECTS) $(regula_falsi_test_LDADD) $(LIBS)
@@ -346,6 +357,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bisection_test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/newton_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/regula_falsi_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/root_finding.Po@am__quote@
 

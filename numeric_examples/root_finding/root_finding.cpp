@@ -109,10 +109,27 @@ int regula_falsi_root(double (*f)(double), double a, double b, double tolerance,
  * @param tolerance
  * @param max_iter
  * @param root
- * @return
+ * @return status
  */
-int newton_root(double (*f)(double), double x0, double tolerance, int max_iter, double &root)
+int newton_root(double (*f)(double), double (*fp)(double), double x0, double tolerance, int max_iter, double &root)
 {
+	double x = x0;
+
+	bool more_iteration = true;
+	int i = 0;
+	while (more_iteration) {
+		double x_i = x - f(x)/fp(x);
+
+		double tr_err = fabs((x_i-x)/x_i);
+		if (tr_err < tolerance || i > max_iter)
+			more_iteration  = false;
+
+		i++;
+		x = x_i;
+	}
+
+	root = x;
+
 	return 0;
 }
 
