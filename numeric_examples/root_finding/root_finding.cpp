@@ -179,5 +179,24 @@ int secant_root(double (*f)(double), double xa, double xb, double tolerance,
  */
 int fixed_point_iteration_root(double (*f)(double), double x0, double tolerance,
 		int max_iter, double & root) {
+	double x_i = x0;
+
+	int i = 0;
+	bool more_iteration = true;
+
+	while (more_iteration) {
+		double x = f(x_i);
+
+		i++;
+
+		double tr_err = fabs((x_i - x) / x_i);
+		if (tr_err < tolerance || i > max_iter)
+					more_iteration = false;
+
+		x_i = x;
+	}
+
+	root = x_i;
+
 	return 0;
 }
