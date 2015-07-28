@@ -1,4 +1,5 @@
-bin_PROGRAMS=bisection_test
+bin_PROGRAMS=bisection_test regula_falsi_test
 
 bisection_test_SOURCES=bisection_test.cpp root_finding.cpp
 
+regula_falsi_test_SOURCES=regula_falsi_test.cpp root_finding.cpp

@@ -70,7 +70,35 @@ int bisection_root(double (*f)(double), double a, double b, double tolerance, in
  */
 int regula_falsi_root(double (*f)(double), double a, double b, double tolerance, int max_iter, double & root)
 {
+	if (!((f(a)*f(b)))< 0)
+		return -1;
 
+	bool more_iteration = true;
+	double x_ns = 0.0;
+	int i;
+
+	while (more_iteration) {
+		double f_a = f(a);
+		double f_b = f(b);
+
+		double x_nsi = (a*f_b-b*f_a)/(f_b-f_a);
+
+		if ((f_a*f(x_nsi)) < 0 ) {
+			b = x_nsi;
+		} else {
+			a = x_nsi;
+		}
+
+		double tr_err = fabs((x_nsi-x_ns)/x_nsi);
+
+		if (tr_err < tolerance || i > max_iter)
+			more_iteration = false;
+
+		i++;
+		x_ns = x_nsi;
+	}
+
+	root = x_ns;
 	return 0;
 }
 

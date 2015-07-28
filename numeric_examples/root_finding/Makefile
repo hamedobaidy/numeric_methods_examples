@@ -79,7 +79,7 @@ POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
 target_triplet = x86_64-unknown-linux-gnu
-bin_PROGRAMS = bisection_test$(EXEEXT)
+bin_PROGRAMS = bisection_test$(EXEEXT) regula_falsi_test$(EXEEXT)
 subdir = root_finding
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -96,6 +96,10 @@ am_bisection_test_OBJECTS = bisection_test.$(OBJEXT) \
 	root_finding.$(OBJEXT)
 bisection_test_OBJECTS = $(am_bisection_test_OBJECTS)
 bisection_test_LDADD = $(LDADD)
+am_regula_falsi_test_OBJECTS = regula_falsi_test.$(OBJEXT) \
+	root_finding.$(OBJEXT)
+regula_falsi_test_OBJECTS = $(am_regula_falsi_test_OBJECTS)
+regula_falsi_test_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -125,8 +129,8 @@ AM_V_CXXLD = $(am__v_CXXLD_$(V))
 am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(bisection_test_SOURCES)
-DIST_SOURCES = $(bisection_test_SOURCES)
+SOURCES = $(bisection_test_SOURCES) $(regula_falsi_test_SOURCES)
+DIST_SOURCES = $(bisection_test_SOURCES) $(regula_falsi_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -249,6 +253,7 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 bisection_test_SOURCES = bisection_test.cpp root_finding.cpp
+regula_falsi_test_SOURCES = regula_falsi_test.cpp root_finding.cpp
 all: all-am
 
 .SUFFIXES:
@@ -330,6 +335,10 @@ bisection_test$(EXEEXT): $(bisection_test_OBJECTS) $(bisection_test_DEPENDENCIES
 	@rm -f bisection_test$(EXEEXT)
 	$(AM_V_CXXLD)$(CXXLINK) $(bisection_test_OBJECTS) $(bisection_test_LDADD) $(LIBS)
 
+regula_falsi_test$(EXEEXT): $(regula_falsi_test_OBJECTS) $(regula_falsi_test_DEPENDENCIES) $(EXTRA_regula_falsi_test_DEPENDENCIES) 
+	@rm -f regula_falsi_test$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(regula_falsi_test_OBJECTS) $(regula_falsi_test_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -337,6 +346,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/bisection_test.Po
+include ./$(DEPDIR)/regula_falsi_test.Po
 include ./$(DEPDIR)/root_finding.Po
 
 .cpp.o:
