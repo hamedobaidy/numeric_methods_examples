@@ -3,6 +3,7 @@
  *
  *  Created on: Jul 28, 2015
  *      Author: hamed
+ *      A program to test secant root finding function
  */
 
 #include <iostream>
