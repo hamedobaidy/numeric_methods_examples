@@ -3,6 +3,8 @@
  *
  *  Created on: Jul 28, 2015
  *      Author: hamed
+ *
+ *      A simple program to test newto method
  */
 
 #include <iostream>
